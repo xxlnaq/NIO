@@ -24,12 +24,12 @@ public class Reactor implements Closeable, Runnable{
             serverChannel.bind(new InetSocketAddress(8080));
             serverChannel.configureBlocking(false);
             //注册时，将Acceptor作为附加对象存放，当选择器选择后也可以获取到
-            serverChannel.register(selector, SelectionKey.OP_ACCEPT, new Acceptor(serverChannel, selector));
+            serverChannel.register(selector, SelectionKey.OP_ACCEPT, new Acceptor(serverChannel));
 
             /**
              * 在获取到new Acceptor(serverChannel, selector)并且run时候，会自动注册
              *  channel.register(selector, SelectionKey.OP_READ, new Handler(channel));
-             *  并产生了OP_READ事物和对应对象
+             *  并产生了OP_READ事物和对应对象x`
              */
             while (true) {
                 int count = selector.select();
