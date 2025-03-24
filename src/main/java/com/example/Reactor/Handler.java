@@ -3,8 +3,11 @@ package com.example.Reactor;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Handler implements Runnable{
+    private  static  final  ExecutorService Pool = Executors.newFixedThreadPool(10);
 
     private final SocketChannel channel;
 
